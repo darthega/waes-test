@@ -1,0 +1,28 @@
+@import '../../../styles/vars';
+
+.color-selector {
+  display: flex;
+  line-height: 2em;
+  margin: .5em;
+
+  .color-swatch {
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    display: inline-block;
+    font-size: $base-font;
+    height: 1.5em;
+    margin: .25em .5em;
+    outline: none;
+    position: relative;
+    width: 1.5em;
+    transition-property: width height margin left top;
+    transition-duration: .2s;
+  
+    &.current {
+      height: 2em;
+      width: 2em;
+      margin: 0 .5em;
+    }
+  }
+}

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
-import { createColors } from './utils/color';
-import logo from './assets/logo.jpg';
-import './styles/App.scss';
+import { AppContext } from './context/app';
 
-const appContext = React.createContext({
-  colorCount: 0,
-  colors: [],
-  currentColor: undefined,
-});
+import TextSelector from './components/TextSelector/TextSelector';
+
+import logo from './assets/logo.jpg';
+import { createColors } from './utils/color';
+
+import './styles/App.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.setColor = this.setColor.bind(this);
 
     this.defaultColorCount = 3;
 
@@ -20,26 +21,39 @@ class App extends Component {
       colorCount: this.defaultColorCount,
       colors: createColors(this.defaultColorCount),
       currentColor: 0,
+      colorSet: this.setColor,
     }
+  }
+
+  setColor(index) {
+    this.setState({
+      currentColor: index,
+    })
   }
 
   render() {
     return (
-      <appContext.Provider value={this.state}>
+      <AppContext.Provider value={this.state}>
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Semaphore highlighter</h1>
           </header>
           <main>
-          (section)*2
+              <TextSelector>
+              Some test text
+              </TextSelector>
+            <section>
+              <button style={{background: this.state.colors[this.state.currentColor]}}>Just for testing purposes</button>
+            </section>
           </main>
+
         </div>
-      </appContext.Provider>
+      </AppContext.Provider>
     );
   }
 }
 
-App.contextType = appContext;
+App.contextType = AppContext;
 
 export default App;
