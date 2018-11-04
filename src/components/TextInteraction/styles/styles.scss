@@ -1,0 +1,6 @@
+.text-container {
+  ::selection {
+    color: var(--select-color);
+    background: var(--select-background);
+  }
+}

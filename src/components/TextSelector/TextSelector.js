@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { AppContext } from '../../context/app';
 
 import ColorSelector from '../ColorSelector/ColorSelector';
+import TextInteraction from '../TextInteraction/TextInteraction';
 
 class TextSelector extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class TextSelector extends Component {
         <ColorSelector />
         <AppContext.Consumer>
           {({ colors, currentColor }) => (
-            <div>Current: {colors[currentColor]}</div>
+            <TextInteraction color={colors[currentColor]} />
           )}
         </AppContext.Consumer>
       </section>
