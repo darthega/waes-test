@@ -1,6 +1,20 @@
+@import '../../../styles/vars';
+
 .text-container {
+  border:  solid 1px $dark-color;
+  border-radius: .25em;
+  margin: 1.5em;
+  padding: .5em;
+  min-height: 4em;
+  text-align: left;
+
+  &::selection,
   ::selection {
     color: var(--select-color);
     background: var(--select-background);
+  }
+
+  &.dimmed {
+    color: rgba( $dark-color, .5 )
   }
 }

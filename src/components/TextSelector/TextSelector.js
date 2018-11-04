@@ -1,40 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import { AppContext } from '../../context/app';
+import React from 'react';
 
 import ColorSelector from '../ColorSelector/ColorSelector';
 import TextInteraction from '../TextInteraction/TextInteraction';
 
-class TextSelector extends Component {
-  constructor(props) {
-    super(props);
-  }
+import './styles/styles.scss';
 
-  setup() {
-
-  }
-
-  render() {
-    return (
-      <section>
-        <ColorSelector />
-        <AppContext.Consumer>
-          {({ colors, currentColor }) => (
-            <TextInteraction color={colors[currentColor]} />
-          )}
-        </AppContext.Consumer>
-      </section>
-    )
-  }
-}
-
-TextSelector.propTypes = {
-  children: PropTypes.node,
-};
-
-TextSelector.defaultProps = {
-  children: undefined,
+const TextSelector = function TextSelector(props) {
+  return (
+    <section className="text-selector">
+      <ColorSelector />
+      <TextInteraction />
+    </section>
+  )
 }
 
 export default TextSelector;

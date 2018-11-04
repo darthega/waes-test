@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
+import { AppContext } from '../../context/app';
 
 import { invertColor } from '../../utils/color';
 import './styles/styles.scss';
@@ -9,42 +11,92 @@ class TextInteraction extends Component {
     super(props);
 
     this.firstClean = this.firstClean.bind(this);
+    this.storeSelection = this.storeSelection.bind(this);
 
-    this.touched = false;
+    this.state = {
+      touched: false,
+    }
   }
 
   componentDidMount() {
-    this.container.innerHTML = 'Please type or paste your text here...';
+    this.container.innerHTML = 'Please type or paste your text here, remember that rich text will be pasted as plain text...';
+
+    this.container.addEventListener('paste', (e) => {
+      e.preventDefault();
+
+      const text = e.clipboardData.getData("text/plain");
+      this.container.innerHTML = text;
+    });
+
     document.onselectionchange = () => {
       this.selection = document.getSelection();
     };
   }
 
   firstClean(e) {
-    if (!this.touched) {
+    if (!this.state.touched) {
       this.container.innerHTML = '';
-      this.touched = true;
+
+      this.setState({
+        touched: true,
+      });
     }
+  }
+
+  storeSelection() {
+    const selection = window.getSelection();
+    const selRange = selection.getRangeAt(0);
+    const refSels = this.context.selections[this.context.currentColor] || [];
+
+    refSels.push(selRange);
+    this.context.setSelection(refSels);
   }
 
   render() {
     return (
-      <div
-        style={{
-          '--select-background': this.props.color,
-          '--select-color': invertColor(this.props.color),
+      <AppContext.Consumer>
+        {({
+          colors,
+          currentColor,
+          selections,
+          setSelection,
+        }) => {
+          const currColor = colors[currentColor];
+          const currContrast = invertColor(colors[currentColor]);
+
+          return (
+            <Fragment>
+              <div
+                style={{
+                  '--select-background': currColor,
+                  '--select-color': currContrast,
+                }}
+                className={`text-container${(!this.state.touched) ? ' dimmed' : ''}`}
+                contentEditable
+                ref={(el) => {this.container = el;}}
+                onFocus={this.firstClean}
+              />
+              <div className="action">
+                <button
+                  onClick={this.storeSelection}
+                >
+                  Store selection under color:
+                  <div
+                    style={{
+                      background: currColor,
+                      border: `solid 1px ${currContrast}`,
+                    }}
+                  />
+                </button>
+              </div>
+            </Fragment>
+          )
         }}
-        className={`text-container${(!this.touched) ? ' dimmed' : ''}`}
-        contentEditable
-        ref={(el) => {this.container = el;}}
-        onFocus={this.firstClean}
-      />
+      </AppContext.Consumer>
     )
   }
 }
 
-TextInteraction.propTypes = {
-  color: PropTypes.string.isRequired,
-};
+TextInteraction.contextType = AppContext;
 
 export default TextInteraction;
