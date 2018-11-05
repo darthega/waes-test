@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { AppContext } from '../../context/app';
 
@@ -45,11 +44,14 @@ class TextInteraction extends Component {
 
   storeSelection() {
     const selection = window.getSelection();
-    const selRange = selection.getRangeAt(0);
+    const selRange = (selection.rangeCount > 0) ? selection.getRangeAt(0) : false;
     const refSels = this.context.selections[this.context.currentColor] || [];
 
-    refSels.push(selRange);
-    this.context.setSelection(refSels);
+    if (selRange) {
+      refSels.push(selRange);
+      this.context.setSelection(refSels);
+      selection.removeAllRanges();
+    }
   }
 
   render() {

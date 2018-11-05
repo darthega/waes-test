@@ -8,7 +8,7 @@ import './styles/styles.scss';
 const TextSelector = function TextSelector(props) {
   return (
     <section className="text-selector">
-      <ColorSelector />
+      <ColorSelector type='select' />
       <TextInteraction />
     </section>
   )

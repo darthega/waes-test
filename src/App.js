@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { AppContext } from './context/app';
 
 import TextSelector from './components/TextSelector/TextSelector';
+import TextFilter from './components/TextFilter/TextFilter';
 
 import logo from './assets/logo.jpg';
 import { createColors, invertColor } from './utils/color';
@@ -44,12 +45,10 @@ class App extends Component {
     this.setState({
       selections: refSels,
     }, () => {
-      const withContents = Object.keys(this.state.selections);
-
-      console.log(withContents);
+      const withContents = Object.keys(refSels);
 
       for (let i = 0; i < withContents.length; i += 1) {
-        const thisSels = this.state.selections[i];
+        const thisSels = refSels[withContents[i]];
 
         for (let j = 0; j < thisSels.length; j += 1) {
           const elem = document.createElement('span');
@@ -73,8 +72,7 @@ class App extends Component {
           </header>
           <main>
             <TextSelector />
-            <section>
-            </section>
+            <TextFilter />
           </main>
 
         </div>

@@ -18,7 +18,8 @@
     width: 1.5em;
     transition-property: width height margin left top;
     transition-duration: .2s;
-  
+    transition-timing-function: ease-out;
+
     &.current {
       height: 2em;
       width: 2em;
