@@ -1,0 +1,31 @@
+@import '../../../styles/vars';
+
+.text-selector {
+  .action {
+    margin: 2em;
+
+    button {
+      border: solid 1px $dark-color;
+      border-radius: .25em;
+      background: none;
+      color: $dark-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: $base-font - 2;
+      line-height: 1.5em;
+      vertical-align: middle;
+
+      div {
+        display: inline-block;
+        border-radius: 100%;
+        margin-left: 1em;
+        height: 1.5em;
+        width: 1.5em;
+        vertical-align: middle;
+        transition-property: background border;
+        transition-duration: .2s;
+        transition-timing-function: ease-out;
+      }
+    }
+  }
+}

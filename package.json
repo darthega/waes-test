@@ -1,0 +1,40 @@
+{
+  "name": "waes-test",
+  "version": "0.0.0",
+  "description": "Front end techincal test built for WAES by Daniel Ortega",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darthega/waes-test.git"
+  },
+  "author": "Daniel Ortega <darthega@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darthega/waes-test/issues"
+  },
+  "homepage": "https://github.com/darthega/waes-test#readme",
+  "dependencies": {
+    "node-sass": "^4.9.4",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-scripts": "2.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prop-types": "^15.6.2"
+  }
+}

@@ -1,0 +1,19 @@
+@import 'vars';
+
+$header-background: $dark-color;
+$header-color: $light-color;
+
+.App {
+  text-align: center;
+
+  &-header {
+    background-color: $header-background;
+    display: flex;
+    color: $header-color;
+  }
+
+  &-logo {
+    padding: 0.5em;
+    max-height: $header-height + 1em;
+  }
+}
