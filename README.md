@@ -1,6 +1,14 @@
 # Front end developer test
 This test is developed by Daniel Ortega for WAES, it was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Improvements
+- Built a color.js utils library for handling colors, including random color generation and invert color generation, this leaves open the chance to make the number of colors available to be configured by the user.
+- Some styling considerations built on top of the base sketch received in the test definition for the UI.
+- I didn't implement any state handling library because React already offers the Context API Which I used as state storage.
+
+## Caveats
+- Given that all modern browsers, all but firefox, don't support multiple selection, I couldn't store the selections as ranges of the document's Selection object as I intended, so I had to use the `surroundContents` method of the Range object provided by Selection, this method throws an error when the range given includes non text nodes, such as tag endings, so I decided to format text as plain on pate event to avoid that error. I know a fallback for when the error throws is a better approach but I didn't have the time to implement it.
+
 ## Available Scripts
 
 In the project directory, you can run:
