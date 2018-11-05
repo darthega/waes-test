@@ -1,27 +1,31 @@
 @import '../../../styles/vars';
 
-.text-selector {
-  .action {
-    margin: 2em;
+.filter-window {
+  border:  solid 1px $dark-color;
+  border-radius: .25em;
+  margin: 1.5em;
+  padding: .5em;
+  min-height: 4em;
+  text-align: left;
 
-    button {
-      border: solid 1px $dark-color;
-      border-radius: .25em;
-      background: none;
-      color: $dark-color;
-      cursor: pointer;
-      display: inline-block;
-      font-size: $base-font - 2;
-      line-height: 1.5em;
-      vertical-align: middle;
+  ul {
+    border-top: solid 4px rgba(var(--bullet-color), 0.3);
+    list-style: none;
+    margin: 1.5em .5em;
+    padding: 0;
+    width: calc(100% - 1em);
 
-      div {
-        display: inline-block;
-        border-radius: 100%;
-        margin-left: 1em;
-        height: 1.5em;
-        width: 1.5em;
-        vertical-align: middle;
+    li {
+      padding-left: 1.5em;
+      position: relative;
+      &::before {
+        content: "•";
+        color: var(--bullet-color);
+        font-size: 2.5em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: .35em;
       }
     }
   }

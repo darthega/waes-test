@@ -12,6 +12,7 @@ class FilterWindow extends Component {
 
   renderSelections() {
     const {
+      colors,
       selections,
       visible,
     } = this.props;
@@ -25,11 +26,21 @@ class FilterWindow extends Component {
 
       for (let j = 0; j < selKeys.length; j += 1) {
         const thisSel = selections[selKeys[j]];
+        const midContent = [];
 
         if (selKeys[j] === vKey) { 
           for (let k = 0; k < thisSel.length; k += 1) {
-            contents.push(<li key={`s-${i}-${j}-${k}`}>{thisSel[k].toString()}</li>);
+            midContent.push(
+              <li
+                key={`s-${i}-${j}-${k}`}
+                style={{'--bullet-color': colors[vKey]}}
+              >
+                {thisSel[k].toString()}
+              </li>
+            );
           }
+
+          contents.push(<ul key={`s-${i}-${j}`}>{midContent}</ul>);
         }
       }
     }
@@ -38,9 +49,8 @@ class FilterWindow extends Component {
   }
 
   render () {
-    console.log(this.props);
     return (
-      <section className="text-selector">
+      <section className="filter-window">
         <ul>{this.renderSelections()}</ul>
       </section>
     )
@@ -48,6 +58,7 @@ class FilterWindow extends Component {
 }
 
 FilterWindow.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   visible: PropTypes.arrayOf(PropTypes.number).isRequired,
   selections: PropTypes.shape({}).isRequired,
 };

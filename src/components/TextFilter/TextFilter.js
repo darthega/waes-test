@@ -5,8 +5,6 @@ import { AppContext } from '../../context/app';
 import ColorSelector from '../ColorSelector/ColorSelector';
 import FilterWindow from '../FilterWindow/FilterWindow';
 
-import './styles/styles.scss';
-
 class TextFilter extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +34,7 @@ class TextFilter extends Component {
   render () {
     return (
       <AppContext.Consumer>
-        {({ selections }) => {
+        {({ colors, selections }) => {
           return (
             <section className="text-filter">
               <ColorSelector
@@ -47,6 +45,7 @@ class TextFilter extends Component {
               <FilterWindow
                 visible={this.state.visible}
                 selections={selections}
+                colors={colors}
               />
             </section>
           )

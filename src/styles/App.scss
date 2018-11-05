@@ -3,15 +3,6 @@
 $header-background: $dark-color;
 $header-color: $light-color;
 
-body {
-  font-size: $base-font;
-
-  @media (min-width: 768px) {
-    margin: 0 10vw;
-    width: 80vw;
-  }
-}
-
 .App {
   text-align: center;
 
